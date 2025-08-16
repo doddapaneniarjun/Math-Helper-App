@@ -118,18 +118,7 @@ const Gen = {
 =================================== */
 const CATALOG = [
   // -------- Singapore Primary 1–6 --------
-  { title:"Singapore Math — Primary 1", lessons:[
-    {title:"Counting & Comparing", summary:"Count to 100 and compare numbers.", topicKeys:["numbers_place_value","add_sub"]},
-    {title:"Number Bonds", summary:"Make 10s and 20s.", topicKeys:["add_sub"]},
-    {title:"Add within 20", summary:"Fluency up to 20.", topicKeys:["add_sub"]},
-    {title:"Subtract within 20", summary:"Fluency up to 20.", topicKeys:["add_sub"]},
-    {title:"Place Value (2-digit)", summary:"Tens and ones.", topicKeys:["numbers_place_value"]},
-    {title:"Add within 100", summary:"Two-digit addition.", topicKeys:["add_sub"]},
-    {title:"Subtract within 100", summary:"Two-digit subtraction.", topicKeys:["add_sub"]},
-    {title:"Time Basics", summary:"Read hour & half-hour.", topicKeys:["time"]},
-    {title:"Money (Coins)", summary:"Count US coins.", topicKeys:["money"]},
-    {title:"Measurement Intro", summary:"Compare length/weight.", topicKeys:["measurement"]}
-  ]},
+
 
 
 
@@ -145,31 +134,6 @@ const CATALOG = [
     {title:"Geometry Basics", summary:"Angles, perimeter.", topicKeys:["geometry","area_perimeter"]},
     {title:"Counting & Probability", summary:"Simple P/counting.", topicKeys:["counting_probability"]},
     {title:"Number Theory Intro", summary:"Divisibility/gcd.", topicKeys:["number_theory"]}
-  ]},
-  { title:"AoPS — Algebra", lessons:[
-    {title:"Linear Equations", summary:"Solve & graph.", topicKeys:["algebra_linear"]},
-    {title:"Systems of Equations", summary:"Elimination/subst.", topicKeys:["algebra_linear"]},
-    {title:"Quadratics 1", summary:"Roots/factoring.", topicKeys:["algebra_quadratic"]},
-    {title:"Quadratics 2", summary:"Completing square.", topicKeys:["algebra_quadratic"]},
-    {title:"Exponents & Radicals", summary:"Rules & simplify.", topicKeys:["exponents"]},
-    {title:"Polynomials", summary:"Add/multiply/factor.", topicKeys:["exponents"]},
-    {title:"Rational Expressions", summary:"Simplify/solve.", topicKeys:["fractions_ops","algebra_linear"]},
-    {title:"Inequalities", summary:"One-var & systems.", topicKeys:["algebra_linear"]},
-    {title:"Functions", summary:"Notation & eval.", topicKeys:["algebra_linear","exponents"]},
-    {title:"Word Problems (Algebra)", summary:"Translate/solve.", topicKeys:["algebra_linear","word_problems"]}
-  ]},
-  { title:"AoPS — Geometry", lessons:[
-    {title:"Angles & Lines", summary:"Parallel/transversal.", topicKeys:["geometry"]},
-    {title:"Triangles", summary:"Congruence/similarity.", topicKeys:["geometry"]},
-    {title:"Quadrilaterals", summary:"Properties.", topicKeys:["geometry"]},
-    {title:"Circles", summary:"Arcs/chords/angles.", topicKeys:["geometry"]},
-    {title:"Area", summary:"Polygons & circles.", topicKeys:["area_perimeter"]},
-    {title:"Coordinate Geo 1", summary:"Distance/slope.", topicKeys:["algebra_linear","geometry"]},
-    {title:"Coordinate Geo 2", summary:"Midpoint/equations.", topicKeys:["algebra_linear","geometry"]},
-    {title:"Transformations", summary:"Reflections/rot.", topicKeys:["geometry"]},
-    {title:"3D Geometry", summary:"Nets/surface/volume.", topicKeys:["geometry"]},
-    {title:"Challenging Geo Problems", summary:"Olympiad-style.", topicKeys:["geometry","word_problems"]}
-  ]},
 ];
 
 
