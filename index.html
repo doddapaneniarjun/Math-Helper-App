@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Math Helper App</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="tabs">
     <button class="tab-btn" data-tab="topics-tab">Topics</button>
     <button class="tab-btn" data-tab="books-tab">Books</button>
+    <!-- Clear Progress button is injected by JS -->
   </div>
 
   <div id="topics-tab" class="tab-content active">
@@ -36,18 +37,19 @@
     </div>
   </div>
 
-  <!-- RSM-style Modal -->
+  <!-- Modal -->
   <div id="problem-modal">
     <div class="modal-content">
       <button id="close-btn">✕</button>
       <div class="problem-text"></div>
       <input class="answer-input" placeholder="Enter your answer"/>
-      <button id="submit-answer">Enter</button>
       <div class="feedback"></div>
-      <button class="next-problem">Next</button>
+      <div class="modal-actions">
+        <button class="next-problem">Enter</button>
+      </div>
     </div>
   </div>
 
-  <script defer src="app.js"></script>
+  <script defer src="./app.js"></script>
 </body>
 </html>
