@@ -248,7 +248,7 @@ const CATALOG = [
     {title:"Digits & Bases", summary:"Base b problems.", topicKeys:["number_theory","numbers_place_value"]},
     {title:"Arithmetic Functions", summary:"τ, σ, φ (lite).", topicKeys:["number_theory"]},
     {title:"Quadratic Residues (lite)", summary:"Squares mod n.", topicKeys:["number_theory"]},
-    {title:"Orders & Cycles", summary:"Patterns.", topicKeys":["number_theory"]},
+    {title:"Orders & Cycles", summary:"Patterns.", topicKeys:["number_theory"]},
     {title:"Inequalities (NT tricks)", summary:"Bounds.", topicKeys:["number_theory"]},
     {title:"Mixed NT Problems", summary:"AMC/AIME style.", topicKeys:["number_theory"]}
   ]},
