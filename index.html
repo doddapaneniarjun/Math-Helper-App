@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math Helper App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-btn" data-tab="topics-tab">Topics</button>
+    <button class="tab-btn" data-tab="books-tab">Books</button>
+  </div>
+
+  <div id="topics-tab" class="tab-content active">
+    <h2>Topics</h2>
+    <div id="topics-list"></div>
+  </div>
+
+  <div id="books-tab" class="tab-content">
+    <h2>Books</h2>
+    <div id="books-list"></div>
+
+    <div id="book-content" class="hidden">
+      <h3 id="book-title"></h3>
+      <div id="lessons-list"></div>
+      <button id="back-to-books">Back to Books</button>
+    </div>
+
+    <div id="lesson-content" class="hidden">
+      <h3 id="lesson-title"></h3>
+      <p id="lesson-summary"></p>
+      <div id="lesson-examples"></div>
+      <div id="lesson-practice"></div>
+      <button id="back-to-lessons">Back to Lessons</button>
+    </div>
+  </div>
+
+  <!-- RSM-style Modal -->
+  <div id="problem-modal">
+    <div class="modal-content">
+      <button id="close-btn">✕</button>
+      <div class="problem-text"></div>
+      <input class="answer-input" placeholder="Enter your answer"/>
+      <button id="submit-answer">Enter</button>
+      <div class="feedback"></div>
+      <button class="next-problem">Next</button>
+    </div>
+  </div>
+
+  <script defer src="app.js"></script>
+</body>
+</html>
