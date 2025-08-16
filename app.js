@@ -26,7 +26,6 @@ const books = [
     {title:"Numbers & Place Value", summary:"Understanding numbers and place values.", practice:[
       {question:"Write 4,562 in expanded form.", answer:"4000+500+60+2"},
       {question:"What is the value of the digit 7 in 3,742?", answer:"700"}
-    ]}
   ]}
 ];
 
