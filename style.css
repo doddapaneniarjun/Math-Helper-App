@@ -214,3 +214,61 @@ input.answer-input{
   box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
+/* Background */
+body {
+  font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+  padding: 20px;
+  background: linear-gradient(135deg, #42a5f5, #9c27b0);
+  background-attachment: fixed;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Fun Buttons (Back + Clear Progress) */
+#back-to-books,
+#back-to-lessons,
+#clear-progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;                     /* space for icons if used */
+  padding: 12px 24px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 25px;          /* Bubble look */
+  background: linear-gradient(135deg, #42a5f5, #9c27b0);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#back-to-books:hover,
+#back-to-lessons:hover,
+#clear-progress:hover {
+  background: linear-gradient(135deg, #64b5f6, #ba68c8);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* General Buttons (lesson & practice) */
+button {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #42a5f5, #7e57c2);
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 5px 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #64b5f6, #9575cd);
+  transform: translateY(-2px);
+}
