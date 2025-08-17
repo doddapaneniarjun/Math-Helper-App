@@ -423,3 +423,59 @@ input.answer-input{
   .inline-answer{ width: 120px }
   .tabs{ gap:10px }
 }
+/* --- FIX: back buttons look like big white blocks --- */
+/* Make them compact, pill-shaped, and NOT full-width */
+#back-to-books,
+#back-to-lessons,
+#clear-progress {
+  display: inline-flex !important;
+  width: auto !important;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px !important;
+  border-radius: 999px !important;
+  background-image: linear-gradient(135deg, #5a9bff, #8d63ff) !important;
+  border: 0 !important;
+  text-align: center !important;
+  margin: 14px 10px 0 0 !important;
+  box-shadow: 0 10px 20px rgba(35,67,139,.18) !important;
+}
+
+/* Hover/active lift to match the rest */
+#back-to-books:hover,
+#back-to-lessons:hover,
+#clear-progress:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+#back-to-books:active,
+#back-to-lessons:active,
+#clear-progress:active {
+  transform: translateY(0) scale(.98);
+}
+
+/* --- FIX: lesson & book list buttons that might be stretching full-width --- */
+#books-list button,
+#lessons-list button,
+#lesson-practice button {
+  display: inline-flex !important;
+  width: auto !important;
+  text-align: center !important;
+  border-radius: 16px !important;
+  margin: 6px 8px 0 0 !important;
+  background-image: linear-gradient(135deg, #5a9bff, #8d63ff) !important;
+  border: 0 !important;
+}
+
+/* If you still see a big white "card" around the back buttons and don't want it,
+   soften the card background a bit (optional): */
+#book-content,
+#lesson-content {
+  background: #ffffff;         /* keep card */
+  border: 2px solid #e8efff;
+  /* If you want *no* white card look, uncomment the next three lines:
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  */
+}
