@@ -272,3 +272,154 @@ button:hover {
   background: linear-gradient(135deg, #64b5f6, #9575cd);
   transform: translateY(-2px);
 }
+:root{
+  --bg1:#4e8cff;      /* blue */
+  --bg2:#a15cff;      /* purple */
+  --ink:#0b1b2b;
+  --ink-soft:#3b5872;
+  --card:#ffffff;
+  --muted:#e9effa;
+  --ok:#2ecc71;
+  --bad:#ff5252;
+  --shadow: 0 12px 26px rgba(35,67,139,.18);
+}
+
+/* PAGE BACKGROUND (blue -> purple gradient) */
+html,body{height:100%}
+body{
+  margin:0; padding:24px;
+  font-family: 'Poppins','Segoe UI',Tahoma,Verdana,sans-serif;
+  color:var(--ink);
+  background: radial-gradient(1000px 600px at -15% -15%, rgba(255,255,255,.65), transparent 50%),
+              radial-gradient(900px 600px at 115% -10%, rgba(255,255,255,.35), transparent 60%),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  background-attachment: fixed;
+}
+
+/* ======= GLOBAL BUTTONS (all buttons share gradient + hover) ======= */
+button, .tab-btn, .inline-enter, .next-problem, #back-to-books, #back-to-lessons, #clear-progress {
+  appearance:none; border:none; cursor:pointer;
+  background-image: linear-gradient(135deg, #5a9bff, #8d63ff);
+  color:#fff; font-weight:800; letter-spacing:.3px;
+  padding:12px 18px; border-radius:18px; box-shadow: var(--shadow);
+  transition: transform .15s ease, filter .2s ease, box-shadow .25s ease;
+}
+button:hover, .tab-btn:hover, .inline-enter:hover, .next-problem:hover,
+#back-to-books:hover, #back-to-lessons:hover, #clear-progress:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 32px rgba(35,67,139,.25);
+}
+button:active, .tab-btn:active, .inline-enter:active, .next-problem:active,
+#back-to-books:active, #back-to-lessons:active, #clear-progress:active{
+  transform: translateY(0) scale(.98);
+}
+
+/* For disabled states */
+button:disabled, .inline-enter:disabled{
+  opacity:.55; cursor:not-allowed; transform:none; filter:none; box-shadow: none;
+}
+
+/* ======= TABS ======= */
+.tabs{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
+.tab-btn{ font-size:16px; }
+.tab-content{ display:none }
+.tab-content.active{ display:block }
+
+/* ======= HEADERS ======= */
+#topics-tab h2, #books-tab h2{
+  margin:6px 0 12px; color:#fff; text-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+/* ======= GRID LAYOUTS ======= */
+#topics-list{
+  display:grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+  gap:22px;
+}
+#books-list{ display:grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+
+/* ======= CARDS ======= */
+.topic-card, #book-content, #lesson-content{
+  background: var(--card);
+  border-radius:18px; padding:16px 18px;
+  box-shadow: var(--shadow);
+  border:2px solid rgba(255,255,255,.35);
+}
+.topic-card h3{
+  margin:0 0 8px; font-size:18px; font-weight:900; color:#5a78ff; cursor:pointer;
+}
+.topic-content{ margin-top:8px; padding-top:10px; border-top:2px dashed #dfe6ff; }
+.topic-content p{ margin:0 0 10px; color:var(--ink-soft); }
+
+/* ======= PRACTICE LIST ======= */
+ul{ margin:10px 0; padding-left:20px }
+li.practice-item{
+  list-style:none;
+  display:grid; grid-template-columns: 1fr auto auto; gap:10px; align-items:center;
+  background:#f6f8ff;
+  border:2px solid #e6ecff; border-radius:14px;
+  padding:10px 12px; margin-bottom:10px;
+}
+.inline-answer{
+  width:170px; max-width: 50vw;
+  padding:10px 12px; border-radius:12px; border:2px solid #d9e4ff; background:#fff;
+  outline:none; font-size:16px; transition: box-shadow .2s ease, border-color .2s ease;
+}
+.inline-answer:focus{ border-color:#7b8bff; box-shadow: 0 0 0 4px rgba(123,139,255,.18) }
+
+.inline-enter{ /* inherits gradient */ }
+.inline-feedback{ grid-column: 1 / -1; font-weight:900; min-height:18px }
+.inline-feedback.ok{ color: var(--ok) }
+.inline-feedback.bad{ color: var(--bad) }
+
+/* ======= BOOK & LESSON PANELS ======= */
+#book-title, #lesson-title{ margin:0 0 8px; color:#5a78ff }
+#lesson-summary{ color:var(--ink-soft) }
+
+/* Special placement for the back buttons (keep rounded gradient) */
+#back-to-books, #back-to-lessons { margin-top:14px; }
+
+/* ======= MODAL ======= */
+#problem-modal{
+  display:none; position:fixed; inset:0; z-index:1000;
+  background: rgba(6,14,35,.65);
+  justify-content:center; align-items:center; padding:22px;
+}
+#problem-modal.active{ display:flex }
+#problem-modal .modal-content{
+  position:relative; width:min(780px,95%);
+  background: var(--card); border-radius:20px; padding:30px 24px 22px;
+  border:3px solid #e8efff; box-shadow: 0 24px 48px rgba(10,18,42,.35);
+  text-align:center;
+}
+#close-btn{
+  position:absolute; top:-14px; right:-14px;
+  width:40px; height:40px; border-radius:50%;
+  background:#ff4d4f; color:#fff; font-size:20px; font-weight:900;
+  display:flex; align-items:center; justify-content:center; line-height:1; border:none; cursor:pointer;
+  box-shadow: 0 12px 20px rgba(0,0,0,.25);
+}
+.problem-text{ font-size:22px; font-weight:900; color:var(--ink) }
+input.answer-input{
+  width:72%; max-width:460px; padding:12px 14px; margin-top:14px;
+  border-radius:14px; border:2px solid #d9e4ff; font-size:18px; background:#fff;
+}
+.feedback{ margin-top:10px; font-weight:900; min-height:22px }
+.modal-actions{ margin-top:14px; display:flex; justify-content:center; gap:10px }
+
+/* ======= SHOW MORE BUTTON ======= */
+.more-row{ display:flex; justify-content:center; padding-top:6px }
+.more-row button{ padding:10px 14px }
+
+/* ======= ACCESSIBILITY FOCUS ======= */
+:focus-visible{
+  outline:3px solid rgba(255,255,255,.85);
+  outline-offset:2px;
+  border-radius:16px;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width:560px){
+  .inline-answer{ width: 120px }
+  .tabs{ gap:10px }
+}
