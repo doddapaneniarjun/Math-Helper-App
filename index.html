@@ -1,55 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Math Helper App</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Math Helper</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="tabs">
-    <button class="tab-btn" data-tab="topics-tab">Topics</button>
-    <button class="tab-btn" data-tab="books-tab">Books</button>
-    <!-- Clear Progress button is injected by JS -->
-  </div>
-
-  <div id="topics-tab" class="tab-content active">
-    <h2>Topics</h2>
-    <div id="topics-list"></div>
-  </div>
-
-  <div id="books-tab" class="tab-content">
-    <h2>Books</h2>
-    <div id="books-list"></div>
-
-    <div id="book-content" class="hidden">
-      <h3 id="book-title"></h3>
-      <div id="lessons-list"></div>
-      <button id="back-to-books">Back to Books</button>
+  <header>
+    <h1>Math Helper</h1>
+    <div class="score">
+      Points: <strong id="points-total">0</strong>
     </div>
-
-    <div id="lesson-content" class="hidden">
-      <h3 id="lesson-title"></h3>
-      <p id="lesson-summary"></p>
-      <div id="lesson-examples"></div>
-      <div id="lesson-practice"></div>
-      <button id="back-to-lessons">Back to Lessons</button>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="topics-tab">Topics</button>
+      <button class="tab-btn" data-tab="books-tab">Books</button>
+      <button class="tab-btn" data-tab="next-tab">Next</button>
     </div>
-  </div>
+  </header>
 
-  <!-- Modal -->
-  <div id="problem-modal">
-    <div class="modal-content">
-      <button id="close-btn">✕</button>
-      <div class="problem-text"></div>
-      <input class="answer-input" placeholder="Enter your answer"/>
-      <div class="feedback"></div>
+  <main>
+    <!-- TOPICS -->
+    <section id="topics-tab" class="tab-content active">
+      <h2>Topics</h2>
+      <div id="topics-list" class="list-grid"></div>
+    </section>
+
+    <!-- BOOKS -->
+    <section id="books-tab" class="tab-content">
+      <h2>Books</h2>
+      <div id="books-list" class="books-list"></div>
+
+      <div id="book-content" class="hidden panel">
+        <h3 id="book-title"></h3>
+        <div id="lessons-list" class="list-grid"></div>
+        <div class="panel-actions">
+          <button id="back-to-books" class="secondary">Back to Books</button>
+        </div>
+      </div>
+
+      <div id="lesson-content" class="hidden panel">
+        <h3 id="lesson-title"></h3>
+        <p id="lesson-summary"></p>
+        <div id="lesson-examples"></div>
+        <div id="lesson-practice" class="practice-grid"></div>
+        <div class="panel-actions">
+          <button id="back-to-lessons" class="secondary">Back to Lessons</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <section id="next-tab" class="tab-content">
+      <h2>Next</h2>
+      <div class="panel">
+        <h3>Suggested Next Lessons</h3>
+        <div id="suggested-lessons" class="list-grid"></div>
+      </div>
+      <div class="panel">
+        <h3>Favorites</h3>
+        <div id="favorites-list" class="practice-grid"></div>
+      </div>
+      <div class="panel">
+        <h3>Daily Mega-Challenge</h3>
+        <div id="daily-challenge" class="practice-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="problem-modal" class="modal">
+    <div class="modal-panel">
+      <button id="modal-close" class="modal-close">✕</button>
+      <div class="modal-header">
+        <div id="modal-book-lesson" class="muted"></div>
+        <h2 id="modal-question"></h2>
+      </div>
+      <div class="modal-body">
+        <input id="modal-answer" type="text" placeholder="Enter your answer" autocomplete="off"/>
+        <div id="modal-feedback" class="feedback"></div>
+      </div>
       <div class="modal-actions">
-        <button class="next-problem">Enter</button>
+        <button id="modal-check" class="primary">Check</button>
+        <button id="modal-next" class="secondary">Next</button>
+        <button id="modal-fav" class="ghost">☆ Favorite</button>
       </div>
     </div>
   </div>
 
-  <script defer src="./app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
