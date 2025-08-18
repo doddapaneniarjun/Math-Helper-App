@@ -1,481 +1,95 @@
-:root{
-  --bg: #f1f8ff;
-  --bg2:#e3f2fd;
-  --card:#ffffff;
-  --ink:#0b2545;
-  --ink-soft:#385170;
-  --primary:#2e7dff;
-  --primary-dark:#1a5ed8;
-  --accent:#ffd166;
-  --accent-ink:#6b4a00;
-  --success:#2ecc71;
-  --error:#ff5a5f;
-  --shadow: 0 10px 22px rgba(31,61,120,.18);
+:root {
+  --purple1:#7b1fa2;
+  --purple2:#ab47bc;
+  --bg1:#f3e5f5;
+  --bg2:#e1bee7;
+  --green:#43a047;
+  --red:#e53935;
 }
 
-/* Base */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin:0;
-  padding: 24px;
-  color: var(--ink);
-  background: radial-gradient(1200px 600px at 10% -10%, #e8f0ff 10%, transparent 40%), 
-              radial-gradient(800px 500px at 110% 10%, #e0fbff 20%, transparent 60%),
-              linear-gradient(180deg, var(--bg), var(--bg2));
-}
-
-/* Top Tabs */
-.tabs{
-  display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom: 22px;
-}
-.tab-btn{
-  appearance:none; border:none; cursor:pointer;
-  background: var(--primary);
-  color:#fff; font-weight:800;
-  padding: 14px 18px; border-radius: 16px;
-  box-shadow: var(--shadow);
-  letter-spacing:.3px;
-  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
-}
-.tab-btn:hover{ background: var(--primary-dark); transform: translateY(-1px)}
-.tab-btn:active{ transform: translateY(0) scale(.98) }
-
-/* Clear progress sits like a chip button */
-.tabs .clear-btn{
-  background: var(--accent); color: var(--accent-ink);
-}
-.tabs .clear-btn:hover{ filter: brightness(.95) }
-
-/* Section headings */
-#topics-tab h2, #books-tab h2{
-  margin: 8px 0 12px; font-size: 28px;
-  color: var(--ink); letter-spacing:.5px;
-}
-
-/* Layouts */
-.tab-content{ display:none }
-.tab-content.active{ display:block }
-
-/* Topics grid with plenty of space */
-#topics-list{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-.topic-card{
-  background: var(--card);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: var(--shadow);
-  border: 3px solid rgba(46,125,255,.08);
-  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.topic-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(31,61,120,.22); border-color: rgba(46,125,255,.16); }
-.topic-card h3{
-  margin: 0 0 10px; cursor: pointer;
-  color: var(--primary); font-weight:900; font-size: 18px;
-}
-
-/* Inside topic */
-.topic-content{ margin-top: 6px; padding-top: 10px; border-top: 2px dashed #d6e2ff; }
-.topic-content p{ margin: 0 0 10px; color: var(--ink-soft) }
-ul{ margin: 10px 0; padding-left: 20px }
-
-/* Practice items with inline answer + enter */
-li.practice-item{
-  list-style:none;
-  display:grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items:center;
-  background: #f7fbff;
-  border: 2px solid #d7e6ff;
-  border-radius: 14px;
-  padding: 10px 12px; margin-bottom: 10px;
-  transition: transform .1s ease, background .2s ease, border-color .2s ease;
-}
-li.practice-item:hover{ background: #eef6ff; border-color: #c7dcff }
-
-.inline-answer{
-  width: 160px; max-width: 45vw;
-  padding: 10px 12px;
-  border-radius: 12px; border: 2px solid #cde0ff; outline:none;
-  font-size: 16px;
-  transition: box-shadow .2s ease, border-color .2s ease;
-  background: #fff;
-}
-.inline-answer:focus{ border-color: var(--primary); box-shadow: 0 0 0 4px rgba(46,125,255,.15) }
-
-.inline-enter{
-  padding: 10px 14px; border-radius: 12px; border:none; cursor:pointer;
-  background: var(--primary); color:#fff; font-weight:800; box-shadow: var(--shadow);
-  transition: transform .12s ease, background .2s ease;
-}
-.inline-enter:hover{ background: var(--primary-dark); transform: translateY(-1px) }
-.inline-enter:disabled{ opacity:.5; cursor:not-allowed }
-
-.inline-feedback{
-  grid-column: 1 / -1; font-weight:800; padding-left:4px; min-height: 18px;
-}
-.inline-feedback.ok{ color: var(--success) }
-.inline-feedback.bad{ color: var(--error) }
-
-/* Books list & Lessons list */
-#books-list{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
-#books-list button, #lessons-list button{
-  display:block; width:100%; text-align:left; padding: 14px 16px; border-radius:16px; border:none; cursor:pointer;
-  background: linear-gradient(180deg, #ffffff, #f4f8ff);
-  color: var(--ink); font-weight:800; box-shadow: var(--shadow);
-  border: 2px solid #dfeaff;
-}
-#books-list button:hover, #lessons-list button:hover{ transform: translateY(-2px); border-color: #c9dcff }
-
-/* Lesson content panel */
-#book-content, #lesson-content{
-  background: var(--card); border-radius: 18px; padding: 16px; margin-top: 14px; box-shadow: var(--shadow);
-  border: 2px solid #dfeaff;
-}
-#book-title, #lesson-title{ color: var(--primary); margin: 0 0 8px }
-#lesson-summary{ color: var(--ink-soft) }
-
-/* Modal */
-#problem-modal{
-  display:none; position: fixed; inset:0; z-index: 1000;
-  background: rgba(3,12,27,.65);
-  justify-content:center; align-items:center; padding: 20px;
-}
-#problem-modal.active{ display:flex }
-#problem-modal .modal-content{
-  background: var(--card); border-radius: 20px; width: min(760px, 96%);
-  padding: 28px 22px 22px; position: relative; box-shadow: 0 24px 48px rgba(7,18,38,.35);
-  border: 3px solid #dfeaff;
-  text-align:center;
-}
-#close-btn{
-  position: absolute; top: -14px; right: -14px;
-  width: 40px; height: 40px; border-radius: 50%; border:none; cursor:pointer;
-  background: var(--error); color: #fff; font-weight:900; font-size: 20px;
-  display:flex; align-items:center; justify-content:center; line-height:1;
-  box-shadow: 0 10px 18px rgba(0,0,0,.25);
-}
-.problem-text{ font-size: 22px; font-weight:900; color: var(--ink); }
-input.answer-input{
-  width: 70%; max-width: 460px; padding: 12px 14px; border-radius: 14px; border: 2px solid #cde0ff;
-  margin-top: 14px; font-size: 18px;
-}
-.feedback{ margin-top: 10px; font-weight:900; min-height: 22px }
-.modal-actions{ margin-top: 14px; display:flex; justify-content:center; gap: 10px }
-
-.next-problem{
-  padding: 12px 16px; border-radius: 14px; border:none; cursor:pointer;
-  background: var(--primary); color:#fff; font-weight:900; box-shadow: var(--shadow);
-}
-.next-problem:hover{ background: var(--primary-dark) }
-
-/* Celebrations */
-.confetti{
-  position:absolute; left:0; top:0; width:100%; height:100%; overflow:hidden; pointer-events:none;
-}
-.confetti i{
-  position:absolute; width:10px; height:10px; border-radius:2px; opacity:.9;
-  animation: fall 900ms linear forwards;
-}
-@keyframes fall{
-  0%{ transform: translateY(-20px) rotate(0deg) }
-  100%{ transform: translateY(420px) rotate(480deg); opacity:.1 }
-}
-
-/* Responsive tweaks */
-@media (max-width:540px){
-  .inline-answer{ width: 120px }
-  .tab-btn{ width: 100% }
-}
-/* Special Back Buttons */
-#back-to-books,
-#back-to-lessons {
-  display: inline-block;
-  padding: 12px 24px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 25px;       /* Rounded bubble shape */
-  background: linear-gradient(135deg, #42a5f5, #1e88e5);
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-#back-to-books:hover,
-#back-to-lessons:hover {
-  background: linear-gradient(135deg, #64b5f6, #2196f3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-}
-
-/* Background */
 body {
-  font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
-  padding: 20px;
-  background: linear-gradient(135deg, #42a5f5, #9c27b0);
-  background-attachment: fixed;
-  color: #333;
-  min-height: 100vh;
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:#222;
+  padding:20px;
 }
 
-/* Fun Buttons (Back + Clear Progress) */
-#back-to-books,
-#back-to-lessons,
-#clear-progress {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;                     /* space for icons if used */
-  padding: 12px 24px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 25px;          /* Bubble look */
-  background: linear-gradient(135deg, #42a5f5, #9c27b0);
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+header {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
 }
 
-#back-to-books:hover,
-#back-to-lessons:hover,
-#clear-progress:hover {
-  background: linear-gradient(135deg, #64b5f6, #ba68c8);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+.tabs button {
+  background:var(--purple1);
+  border:none;
+  padding:8px 16px;
+  border-radius:8px;
+  color:white;
+  margin-right:6px;
+  cursor:pointer;
+}
+.tabs button.active {
+  background:var(--purple2);
 }
 
-/* General Buttons (lesson & practice) */
-button {
-  padding: 10px 18px;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(135deg, #42a5f5, #7e57c2);
-  color: white;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  margin: 5px 0;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+.list-grid,.practice-grid,.books-list {
+  display:grid;
+  gap:10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
 }
-
-button:hover {
-  background: linear-gradient(135deg, #64b5f6, #9575cd);
-  transform: translateY(-2px);
-}
-:root{
-  --bg1:#4e8cff;      /* blue */
-  --bg2:#a15cff;      /* purple */
-  --ink:#0b1b2b;
-  --ink-soft:#3b5872;
-  --card:#ffffff;
-  --muted:#e9effa;
-  --ok:#2ecc71;
-  --bad:#ff5252;
-  --shadow: 0 12px 26px rgba(35,67,139,.18);
-}
-
-/* PAGE BACKGROUND (blue -> purple gradient) */
-html,body{height:100%}
-body{
-  margin:0; padding:24px;
-  font-family: 'Poppins','Segoe UI',Tahoma,Verdana,sans-serif;
-  color:var(--ink);
-  background: radial-gradient(1000px 600px at -15% -15%, rgba(255,255,255,.65), transparent 50%),
-              radial-gradient(900px 600px at 115% -10%, rgba(255,255,255,.35), transparent 60%),
-              linear-gradient(135deg, var(--bg1), var(--bg2));
-  background-attachment: fixed;
-}
-
-/* ======= GLOBAL BUTTONS (all buttons share gradient + hover) ======= */
-button, .tab-btn, .inline-enter, .next-problem, #back-to-books, #back-to-lessons, #clear-progress {
-  appearance:none; border:none; cursor:pointer;
-  background-image: linear-gradient(135deg, #5a9bff, #8d63ff);
-  color:#fff; font-weight:800; letter-spacing:.3px;
-  padding:12px 18px; border-radius:18px; box-shadow: var(--shadow);
-  transition: transform .15s ease, filter .2s ease, box-shadow .25s ease;
-}
-button:hover, .tab-btn:hover, .inline-enter:hover, .next-problem:hover,
-#back-to-books:hover, #back-to-lessons:hover, #clear-progress:hover{
-  transform: translateY(-2px);
-  filter: brightness(1.06);
-  box-shadow: 0 16px 32px rgba(35,67,139,.25);
-}
-button:active, .tab-btn:active, .inline-enter:active, .next-problem:active,
-#back-to-books:active, #back-to-lessons:active, #clear-progress:active{
-  transform: translateY(0) scale(.98);
-}
-
-/* For disabled states */
-button:disabled, .inline-enter:disabled{
-  opacity:.55; cursor:not-allowed; transform:none; filter:none; box-shadow: none;
-}
-
-/* ======= TABS ======= */
-.tabs{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
-.tab-btn{ font-size:16px; }
-.tab-content{ display:none }
-.tab-content.active{ display:block }
-
-/* ======= HEADERS ======= */
-#topics-tab h2, #books-tab h2{
-  margin:6px 0 12px; color:#fff; text-shadow: 0 2px 6px rgba(0,0,0,.15);
-}
-
-/* ======= GRID LAYOUTS ======= */
-#topics-list{
-  display:grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
-  gap:22px;
-}
-#books-list{ display:grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
-
-/* ======= CARDS ======= */
-.topic-card, #book-content, #lesson-content{
-  background: var(--card);
-  border-radius:18px; padding:16px 18px;
-  box-shadow: var(--shadow);
-  border:2px solid rgba(255,255,255,.35);
-}
-.topic-card h3{
-  margin:0 0 8px; font-size:18px; font-weight:900; color:#5a78ff; cursor:pointer;
-}
-.topic-content{ margin-top:8px; padding-top:10px; border-top:2px dashed #dfe6ff; }
-.topic-content p{ margin:0 0 10px; color:var(--ink-soft); }
-
-/* ======= PRACTICE LIST ======= */
-ul{ margin:10px 0; padding-left:20px }
-li.practice-item{
-  list-style:none;
-  display:grid; grid-template-columns: 1fr auto auto; gap:10px; align-items:center;
-  background:#f6f8ff;
-  border:2px solid #e6ecff; border-radius:14px;
-  padding:10px 12px; margin-bottom:10px;
-}
-.inline-answer{
-  width:170px; max-width: 50vw;
-  padding:10px 12px; border-radius:12px; border:2px solid #d9e4ff; background:#fff;
-  outline:none; font-size:16px; transition: box-shadow .2s ease, border-color .2s ease;
-}
-.inline-answer:focus{ border-color:#7b8bff; box-shadow: 0 0 0 4px rgba(123,139,255,.18) }
-
-.inline-enter{ /* inherits gradient */ }
-.inline-feedback{ grid-column: 1 / -1; font-weight:900; min-height:18px }
-.inline-feedback.ok{ color: var(--ok) }
-.inline-feedback.bad{ color: var(--bad) }
-
-/* ======= BOOK & LESSON PANELS ======= */
-#book-title, #lesson-title{ margin:0 0 8px; color:#5a78ff }
-#lesson-summary{ color:var(--ink-soft) }
-
-/* Special placement for the back buttons (keep rounded gradient) */
-#back-to-books, #back-to-lessons { margin-top:14px; }
-
-/* ======= MODAL ======= */
-#problem-modal{
-  display:none; position:fixed; inset:0; z-index:1000;
-  background: rgba(6,14,35,.65);
-  justify-content:center; align-items:center; padding:22px;
-}
-#problem-modal.active{ display:flex }
-#problem-modal .modal-content{
-  position:relative; width:min(780px,95%);
-  background: var(--card); border-radius:20px; padding:30px 24px 22px;
-  border:3px solid #e8efff; box-shadow: 0 24px 48px rgba(10,18,42,.35);
+button.problem-btn, .list-grid button {
+  background:white;
+  border:2px solid var(--purple1);
+  padding:12px;
+  border-radius:8px;
+  cursor:pointer;
   text-align:center;
 }
-#close-btn{
-  position:absolute; top:-14px; right:-14px;
-  width:40px; height:40px; border-radius:50%;
-  background:#ff4d4f; color:#fff; font-size:20px; font-weight:900;
-  display:flex; align-items:center; justify-content:center; line-height:1; border:none; cursor:pointer;
-  box-shadow: 0 12px 20px rgba(0,0,0,.25);
-}
-.problem-text{ font-size:22px; font-weight:900; color:var(--ink) }
-input.answer-input{
-  width:72%; max-width:460px; padding:12px 14px; margin-top:14px;
-  border-radius:14px; border:2px solid #d9e4ff; font-size:18px; background:#fff;
-}
-.feedback{ margin-top:10px; font-weight:900; min-height:22px }
-.modal-actions{ margin-top:14px; display:flex; justify-content:center; gap:10px }
-
-/* ======= SHOW MORE BUTTON ======= */
-.more-row{ display:flex; justify-content:center; padding-top:6px }
-.more-row button{ padding:10px 14px }
-
-/* ======= ACCESSIBILITY FOCUS ======= */
-:focus-visible{
-  outline:3px solid rgba(255,255,255,.85);
-  outline-offset:2px;
-  border-radius:16px;
+button.problem-btn:hover {
+  background:var(--purple2);
+  color:white;
 }
 
-/* ======= RESPONSIVE ======= */
-@media (max-width:560px){
-  .inline-answer{ width: 120px }
-  .tabs{ gap:10px }
-}
-/* --- FIX: back buttons look like big white blocks --- */
-/* Make them compact, pill-shaped, and NOT full-width */
-#back-to-books,
-#back-to-lessons,
-#clear-progress {
-  display: inline-flex !important;
-  width: auto !important;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px !important;
-  border-radius: 999px !important;
-  background-image: linear-gradient(135deg, #5a9bff, #8d63ff) !important;
-  border: 0 !important;
-  text-align: center !important;
-  margin: 14px 10px 0 0 !important;
-  box-shadow: 0 10px 20px rgba(35,67,139,.18) !important;
+.panel {
+  background:white;
+  border-radius:12px;
+  padding:16px;
+  margin:16px 0;
 }
 
-/* Hover/active lift to match the rest */
-#back-to-books:hover,
-#back-to-lessons:hover,
-#clear-progress:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.06);
-}
-#back-to-books:active,
-#back-to-lessons:active,
-#clear-progress:active {
-  transform: translateY(0) scale(.98);
-}
+.hidden {display:none;}
 
-/* --- FIX: lesson & book list buttons that might be stretching full-width --- */
-#books-list button,
-#lessons-list button,
-#lesson-practice button {
-  display: inline-flex !important;
-  width: auto !important;
-  text-align: center !important;
-  border-radius: 16px !important;
-  margin: 6px 8px 0 0 !important;
-  background-image: linear-gradient(135deg, #5a9bff, #8d63ff) !important;
-  border: 0 !important;
+.modal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
 }
-
-/* If you still see a big white "card" around the back buttons and don't want it,
-   soften the card background a bit (optional): */
-#book-content,
-#lesson-content {
-  background: #ffffff;         /* keep card */
-  border: 2px solid #e8efff;
-  /* If you want *no* white card look, uncomment the next three lines:
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  */
+.modal-panel {
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  width:90%; max-width:600px;
+  position:relative;
 }
+.modal-close {
+  position:absolute;
+  top:12px; right:12px;
+  background:var(--red);
+  color:white;
+  border:none;
+  width:28px; height:28px;
+  border-radius:50%;
+  font-size:16px;
+  cursor:pointer;
+}
+.feedback {margin-top:10px;font-weight:bold;}
+.feedback.correct {color:var(--green);}
+.feedback.wrong {color:var(--red);}
