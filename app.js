@@ -423,8 +423,9 @@ function renderPracticeChunk(bookTitle, lessonTitle, practice, container, start,
         btn.disabled = true;
         updateProgressUI();
       } else {
-        fb.textContent = `❌ Wrong. Correct: ${p.answer}`;
+        fb.textContent = '❌ Try again';
         fb.style.color = "red";
+        if (input) { input.focus(); input.select && input.select(); }
       }
     };
 
@@ -501,6 +502,7 @@ function showLesson(bi, li) {
       currentProblems = practice;
       currentIndex = pi;
       showCurrentProblem();
+      modal.classList.remove("hidden");
       modal.classList.add("active");
     };
     lessonPracticeEl.appendChild(btn);
@@ -527,11 +529,12 @@ function checkAnswer(goNext = false) {
     saveProgress(currentContext.bookTitle, currentContext.lessonTitle, cur.question);
     updateProgressUI();
   } else {
-    feedback.textContent = `❌ Wrong. Correct: ${cur.answer}`;
+    feedback.textContent = '❌ Try again';
     feedback.style.color = "red";
+    if (answerInput) { answerInput.focus(); answerInput.select && answerInput.select(); }
   }
 
-  if (goNext) {
+  if (goNext && user === correct) {
     setTimeout(() => {
       if (currentIndex === currentProblems.length - 1) {
         modal.classList.remove("active");
@@ -543,7 +546,7 @@ function checkAnswer(goNext = false) {
   }
 }
 if (nextBtn) nextBtn.onclick = () => checkAnswer(true);
-if (closeBtn) closeBtn.onclick = () => modal.classList.remove("active");
+if (closeBtn) closeBtn.onclick = () => { modal.classList.remove("active"); modal.classList.add("hidden"); };
 answerInput.addEventListener("keydown", (e) => { if (e.key === "Enter") checkAnswer(true); });
 
 /* ===================================
