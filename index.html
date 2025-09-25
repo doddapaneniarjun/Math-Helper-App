@@ -1,37 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Math Helper</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📘 Math Helper</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.rsm.css" />
+  <style>
+    /* Minimal extras so the app UI from the JS renders nicely */
+    .hidden { display: none; }
+    .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
+    .tab-btn { background: #a569bd; border: none; color: #fff; padding: 10px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; }
+    .tab-btn.active { background: #8e44ad; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .topic-card { background: #fff; border-radius: 10px; padding: 10px 14px; margin: 10px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .topic-card h3 { margin: 0 0 8px 0; cursor: pointer; }
+    .practice-list { list-style: none; padding-left: 0; }
+    .practice-item { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; margin: 6px 0; }
+    .practice-item .inline-answer { padding: 8px; border-radius: 6px; border: 1px solid #ccc; min-width: 120px; }
+    .practice-item .inline-enter { padding: 8px 12px; border: none; border-radius: 6px; background: #d2b4de; cursor: pointer; }
+    .practice-item .inline-feedback { font-weight: 700; }
+    #books-list button, #lessons-list button, #lesson-practice button { width: 100%; text-align: left; }
+    .back-row { margin: 10px 0; }
+    .container { max-width: 960px; margin: 0 auto; }
+  </style>
 </head>
 <body>
-  <h1>📘 Math Helper</h1>
-  <div id="books"></div>
+  <div class="container">
+    <h1>📘 Math Helper</h1>
 
-  <div id="tabs">
-    <button id="books-tab" class="active">Books</button>
-    <button id="favorites-tab">Favorites</button>
-    <button id="recommendations-tab">Recommendations</button>
+    <!-- Tabs expected by the script (uses .tab-btn and #topics/#books/#about as tab-content ids) -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="topics">Topics</button>
+      <button class="tab-btn" data-tab="books">Books</button>
+      <button class="tab-btn" data-tab="about">About</button>
+    </div>
+
+    <!-- Tab: Topics (lazy, chunked) -->
+    <section id="topics" class="tab-content active">
+      <div id="topics-list"></div>
+    </section>
+
+    <!-- Tab: Books (list -> lessons -> problems) -->
+    <section id="books" class="tab-content">
+      <div id="books-list"></div>
+
+      <div id="book-content" class="hidden">
+        <div class="back-row">
+          <button id="back-to-books">← Back to Books</button>
+        </div>
+        <h2 id="book-title"></h2>
+        <div id="lessons-list"></div>
+      </div>
+
+      <div id="lesson-content" class="hidden">
+        <div class="back-row">
+          <button id="back-to-lessons">← Back to Lessons</button>
+        </div>
+        <h3 id="lesson-title"></h3>
+        <p id="lesson-summary"></p>
+        <div id="lesson-examples"></div>
+        <div id="lesson-practice"></div>
+      </div>
+    </section>
+
+    <!-- Tab: About -->
+    <section id="about" class="tab-content">
+      <p>Practice math across many curricula. Your progress is saved locally in your browser.</p>
+    </section>
   </div>
 
-  <div id="content"></div>
-
-  <!-- Problem Modal -->
-  <div id="problem-modal">
+  <!-- Problem Modal (IDs/classes expected by the script) -->
+  <div id="problem-modal" class="hidden">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2 class="problem-title"></h2>
+      <button id="close-btn" aria-label="Close">✖</button>
       <p class="problem-text"></p>
       <input class="answer-input" placeholder="Enter your answer"/>
       <div class="feedback"></div>
-      <button class="favorite-btn">⭐ Add to Favorites</button>
-      <button class="check-btn">Check Answer</button>
+      <button class="next-problem">Enter</button>
     </div>
   </div>
 
-  <div id="points-display">Points: 0</div>
-
-  <script src="script.js"></script>
+  <!-- IMPORTANT: The uploaded JS filename contains a space and parentheses; URL-encode it -->
+  <script src="app.fixed.js"></script>
 </body>
 </html>
