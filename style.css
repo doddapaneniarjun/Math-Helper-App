@@ -1,5 +1,5 @@
 
-/* Ensure the problem modal shows when active */
-#problem-modal { display: none; position: fixed; inset: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); z-index: 9999; }
-#problem-modal.active { display: flex; }
-#problem-modal .modal-content { background: #fff; padding: 16px; border-radius: 12px; max-width: 520px; width: 92%; position: relative; }
+
+#problem-modal{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:9999}
+#problem-modal.active{display:flex}
+#problem-modal .modal-content{background:#fff;padding:16px;border-radius:12px;max-width:520px;width:92%;position:relative}
