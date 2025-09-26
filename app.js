@@ -611,39 +611,9 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 renderTopics();
 renderBooks();
 updateProgressUI();
-// ---- add this at the very end of script.js ----
-(function () {
-  const facts = [
-    "sin²x + cos²x = 1",
-    "e^{iπ} + 1 = 0",
-    "Area of circle = πr²",
-    "Derivative of sin x = cos x",
-    "∑_{k=1}^{n} k = n(n+1)/2",
-    "Golden ratio φ ≈ 1.618",
-    "Pythagoras: a² + b² = c²",
-    "ln(e) = 1",
-    "d/dx (x^n) = n·x^{n-1}"
-  ];
-  const factEl = document.querySelector(".math-fact");
-  if (!factEl) return;
-  let idx = Math.floor(Math.random() * facts.length);
-  factEl.textContent = facts[idx];
-  document.querySelector(".math-surfer-fact").addEventListener("click", () => {
-    idx = (idx + 1) % facts.length;
-    factEl.textContent = facts[idx];
-  });
-  const waveText = document.querySelector(".wave-text textPath");
-  if (waveText) {
-    let offset = 10;
-    setInterval(() => {
-      offset += 0.3;
-      if (offset > 40) offset = 10;
-      waveText.setAttribute("startOffset", offset + "%");
-    }, 60);
-  }
-})();
-// ---- Math Surfer Badge Logic ----
-(function () {
+// ---- Math Surfer Badge Logic (robust) ----
+window.addEventListener('DOMContentLoaded', function () {
+  // If your script tag is in <head>, this guarantees the DOM exists.
   const facts = [
     "sin²x + cos²x = 1",
     "e^{iπ} + 1 = 0",
@@ -656,17 +626,37 @@ updateProgressUI();
     "d/dx (x^n) = n·x^{n-1}"
   ];
 
-  const factEl = document.querySelector(".math-fact");
-  if (!factEl) return;
+  const factPill = document.getElementById("math-surfer-fact");
+  const factEl   = document.getElementById("math-fact");
+  const homeLink = document.getElementById("math-surfer-home");
 
+  // If HTML wasn't pasted, bail gracefully.
+  if (!factPill || !factEl || !homeLink) return;
+
+  // Initialize fact text
   let idx = Math.floor(Math.random() * facts.length);
   factEl.textContent = facts[idx];
 
-  document.querySelector(".math-surfer-fact").addEventListener("click", () => {
+  // Cycle facts on pill click (and never trigger navigation)
+  factPill.addEventListener("click", function (e) {
+    e.stopPropagation();
+    e.preventDefault(); // just in case it sits over the link
     idx = (idx + 1) % facts.length;
     factEl.textContent = facts[idx];
   });
 
+  // Make sure "Home" always works even if something blocks the anchor
+  homeLink.addEventListener("click", function (e) {
+    // If your homepage path is different, change here:
+    // options you can try depending on your setup:
+    // window.location.href = "/";                  // site root
+    // window.location.href = "/Math-Helper-App/"; // GitHub Pages subdir
+    // window.location.href = "./index.html";      // same-folder file
+    // For now we respect the anchor's href:
+    // (keep preventDefault off so normal link works)
+  }, { capture: true });
+
+  // Gentle shimmer along the wave text
   const waveText = document.querySelector(".wave-text textPath");
   if (waveText) {
     let offset = 10;
@@ -676,4 +666,5 @@ updateProgressUI();
       waveText.setAttribute("startOffset", offset + "%");
     }, 60);
   }
-})();
+});
+
