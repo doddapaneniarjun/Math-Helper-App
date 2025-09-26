@@ -1,3 +1,55 @@
+/* Math Surfer styles */
+.math-surfer {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #39c2ff;                 /* wave + board color (nice on dark or light) */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  user-select: none;
+}
+
+.math-surfer-svg {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(57,194,255,0.12), rgba(0,0,0,0) 60%);
+  border-radius: 12px;
+}
+
+/* Bobbing animation for surfer */
+.surfer {
+  animation: surf-bob 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes surf-bob {
+  0%   { transform: translate(40px,72px) translateY(0); }
+  50%  { transform: translate(40px,72px) translateY(-4px); }
+  100% { transform: translate(40px,72px) translateY(0); }
+}
+
+/* fact pill */
+.math-surfer-fact {
+  background: rgba(0,0,0,0.65);
+  color: #e8f7ff;
+  border: 1px solid rgba(57,194,255,0.35);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  max-width: 200px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.math-surfer-fact:hover {
+  background: rgba(0,0,0,0.78);
+}
+
+@media (max-width: 480px) {
+  .math-surfer { transform: scale(0.85); transform-origin: top left; }
+}
 
 
 #problem-modal{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:9999}
