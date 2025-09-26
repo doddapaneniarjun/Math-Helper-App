@@ -117,3 +117,34 @@
   .math-surfer-link { transform: scale(0.85); transform-origin: top left; }
   .math-surfer-fact { left: 120px; }
 }
+/* Tabs */
+.tab-btn {
+  margin: 8px 8px 0 0; padding: 8px 12px; border-radius: 8px;
+  border: 1px solid #2a7bd8; background: #0b1a2b; color: #e9f3ff;
+  cursor: pointer;
+}
+.tab-btn:hover { background:#0f2238; }
+
+/* Enrichment panel */
+#enrichment-panel {
+  margin: 16px 0; padding: 16px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; background: rgba(0,0,0,0.25);
+}
+.enrichment-controls {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px;
+}
+.enrichment-controls label { display:flex; gap:8px; align-items:center; }
+.enrichment-controls select, .enrichment-controls button {
+  padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+  background: #0b0f14; color: #e9f3ff;
+}
+.enrichment-controls .primary { border-color:#39c2ff; }
+
+.q-list { counter-reset: q; margin-left: 18px; }
+.q-list li { margin: 10px 0 14px; }
+.q { font-weight: 600; }
+.ans { margin-top: 6px; padding: 8px; border-left: 3px solid #39c2ff;
+  background: rgba(57,194,255,0.08); border-radius: 6px; display:none; }
+.enrichment-actions { display:flex; gap:12px; align-items:center; margin-top: 10px; }
+.hint { opacity: 0.8; font-size: 12px; }
+
