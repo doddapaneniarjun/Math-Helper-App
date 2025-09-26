@@ -20,6 +20,32 @@
   </style>
 </head>
 <body><!-- Math Surfer Badge (Home link) -->
+  <!-- Enrichment Tab Button -->
+<button id="tab-enrichment" class="tab-btn">Enrichment</button>
+
+<!-- Enrichment Panel -->
+<section id="enrichment-panel" hidden>
+  <div class="enrichment-controls">
+    <label>
+      Book:
+      <select id="enrich-book"></select>
+    </label>
+    <label>
+      Chapter:
+      <select id="enrich-chapter"></select>
+    </label>
+    <button id="enrich-generate" class="primary">Generate 5 Hard Qs</button>
+    <button id="enrich-toggle-answers">Show Answers</button>
+  </div>
+
+  <ol id="enrich-questions" class="q-list"></ol>
+
+  <div class="enrichment-actions">
+    <button id="enrich-regenerate">Regenerate</button>
+    <span class="hint">Tip: click “Show Answers,” then “Regenerate” to get fresh sets.</span>
+  </div>
+</section>
+
 <a href="./index.html" class="math-surfer-link" id="math-surfer-home" aria-label="Go Home">
   <div class="math-surfer" role="img">
     <svg class="math-surfer-svg" viewBox="0 0 120 120" width="120" height="120">
