@@ -55,3 +55,57 @@
 #problem-modal{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:9999}
 #problem-modal.active{display:flex}
 #problem-modal .modal-content{background:#fff;padding:16px;border-radius:12px;max-width:520px;width:92%;position:relative}
+.math-surfer-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  text-decoration: none;
+  color: inherit;
+}
+.math-surfer {
+  display: inline-block;
+  color: #39c2ff;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  user-select: none;
+}
+.math-surfer-svg {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(57,194,255,0.12), rgba(0,0,0,0) 60%);
+  border-radius: 12px;
+}
+.math-surfer-link:hover .math-surfer {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+.surfer {
+  animation: surf-bob 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes surf-bob {
+  0%   { transform: translate(40px,72px) translateY(0); }
+  50%  { transform: translate(40px,72px) translateY(-4px); }
+  100% { transform: translate(40px,72px) translateY(0); }
+}
+.math-surfer-fact {
+  position: fixed;
+  top: 20px;
+  left: 150px;
+  background: rgba(0,0,0,0.65);
+  color: #e8f7ff;
+  border: 1px solid rgba(57,194,255,0.35);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  max-width: 200px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+}
+.math-surfer-fact:hover {
+  background: rgba(0,0,0,0.78);
+}
+@media (max-width: 480px) {
+  .math-surfer-link { transform: scale(0.85); transform-origin: top left; }
+  .math-surfer-fact { left: 120px; }
+}
