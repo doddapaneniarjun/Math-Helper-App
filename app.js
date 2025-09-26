@@ -666,5 +666,184 @@ window.addEventListener('DOMContentLoaded', function () {
       waveText.setAttribute("startOffset", offset + "%");
     }, 60);
   }
-});
+/* ========= ENRICHMENT TAB ========= */
+// Hard question bank (curated). Each q has {q, ans}. 5 are drawn per chapter.
+const ENRICH_BANK = {
+  "Algebra 1": {
+    "Quadratics": [
+      { q: "Solve 3x² − 5x − 2 = 0.", ans: "x = 2 or x = −1/3." },
+      { q: "Vertex and axis of y = −2(x + 3)² + 5.", ans: "Vertex (−3, 5), axis x = −3, opens down." },
+      { q: "For x² + kx + 12 to have a repeated root, find k.", ans: "Discriminant 0 ⇒ k² − 48 = 0 ⇒ k = ±4√3." },
+      { q: "Minimum of f(x)=x² − 4x + 7.", ans: "Complete square: (x−2)² + 3 ⇒ min value 3 at x = 2." },
+      { q: "Monic quadratic with roots 1 ± 2i.", ans: "x² − 2x + 5 = 0." },
+      { q: "Sum/product of roots of 5x² − 9x + 2.", ans: "Sum = 9/5, product = 2/5." },
+      { q: "If x² − 6x + c has one root 4, find c and the other root.", ans: "Plug x=4 ⇒ 16 − 24 + c=0 ⇒ c=8; other root = 2." }
+    ],
+    "Systems": [
+      { q: "Solve { 2x + 3y = 7, 5x − 2y = −4 }.", ans: "x = −2/19, y = 47/19." },
+      { q: "Solve linear–quadratic: { y = x² − 5x + 6, 2y + x = 10 }.", ans: "Substitute y ⇒ 2(x² − 5x + 6) + x = 10 ⇒ 2x² − 9x + 2 = 0 ⇒ x = (9 ± √(81 − 16))/4 = (9 ± √65)/4; y = 10 − x)/2." },
+      { q: "Solve { 3x − y = 11, x + 2y = −1 }.", ans: "x = 7/5, y = −6/5." },
+      { q: "Solve { y = 2x + 1, y = −x + 7 }.", ans: "2x + 1 = −x + 7 ⇒ x = 2, y = 5." },
+      { q: "Solve { x − y = 5, 4x + y = 13 }.", ans: "x = 3, y = −2." }
+    ],
+    "Exponents & Radicals": [
+      { q: "Simplify (27x⁶y³)^(1/3).", ans: "3x²y." },
+      { q: "Solve 2^(x+1) = 5·2^(x−2).", ans: "2^(x+1)/2^(x−2) = 5 ⇒ 2³ = 5 ⇒ contradiction; No real x. (If intended 2^(x+1) = 5·2^(x−2) ⇒ 2³ = 5 ⇒ false.)" },
+      { q: "Solve √(x+5) − √(x−3) = 1.", ans: "Isolate and square ⇒ x = 5." },
+      { q: "Rationalize 5/(2−√3).", ans: "Multiply conj ⇒ (5(2+√3))/(4−3) = 10 + 5√3." },
+      { q: "Simplify (a^(3/2) · a^(−1/2)) / a^(1/3).", ans: "a^(1) / a^(1/3) = a^(2/3)." }
+    ]
+  },
 
+  "Geometry": {
+    "Similarity": [
+      { q: "In △ABC ~ △DEF with AB:DE = 3:5 and AC = 12, find DF if AC:DF = 3:5.", ans: "DF = 20." },
+      { q: "Two similar triangles have perimeters 18 and 30. A side is 9 in the larger; its match in the smaller?", ans: "Scale 18/30 = 3/5 ⇒ 9·(3/5) = 27/5." },
+      { q: "Right triangle legs 7, 24. Altitude from right angle to hypotenuse?", ans: "h = (leg1·leg2)/hyp ⇒ hyp=25 ⇒ h = 168/25." },
+      { q: "In △ABC, angle A=30°, angle B=50°. Angle C? Median from C equals? (tricky)", ans: "Angle C=100°. Median doesn’t equal special length unless isosceles; no direct equality implied." },
+      { q: "Sides in ratio 2:3:4. Perimeter 81. Find sides.", ans: "Sum ratio 9 ⇒ scale 9 ⇒ sides 18, 27, 36." }
+    ],
+    "Circles": [
+      { q: "Chord 10 in a circle; distance from center 4. Radius?", ans: "Use right triangle: r² = 5² + 4² ⇒ r = √41." },
+      { q: "Central angle 72°. Arc length with r=9?", ans: "s = (72/360)·2π·9 = (1/5)·18π = 18π/5." },
+      { q: "Two tangents from external point are 13 and 13; distance between tangent points is 10. Radius?", ans: "Right kite ⇒ half-chord 5, tangent length 13 ⇒ r = 12." },
+      { q: "Inscribed angle intercepts arc 110°. Angle measure?", ans: "Half of arc ⇒ 55°." },
+      { q: "Area difference between circle r and inscribed square?", ans: "πr² − 2r² = r²(π − 2)." }
+    ],
+    "Coordinate Geometry": [
+      { q: "Line through (3,1) and (−5,5). Slope & equation.", ans: "m = (5−1)/(−5−3) = 4/−8 = −1/2. Eq: y − 1 = −(1/2)(x − 3)." },
+      { q: "Circle with diameter endpoints (−2,4) and (6,−2). Equation?", ans: "Center (2,1), r = √[(8)²+(−6)²]/2 = 5. Eq: (x−2)² + (y−1)² = 25." },
+      { q: "Distance from (7,−1) to line 3x−4y−12=0.", ans: " |3·7−4(−1)−12|/√(3²+ (−4)²) = |21+4−12|/5 = 13/5." },
+      { q: "Intersection of y=2x−3 and y=−x+6.", ans: "2x−3 = −x+6 ⇒ x=3, y=3." },
+      { q: "Midpoint between (a,b) and (c,d).", ans: "((a+c)/2, (b+d)/2)." }
+    ]
+  },
+
+  "Algebra 2 & Trig": {
+    "Polynomials": [
+      { q: "If f(x)=x³−4x²+ax−12 has x=3 as root, find a and remaining roots.", ans: "Plug 3 ⇒ 27−36+3a−12=0 ⇒ 3a−21=0 ⇒ a=7. Factor (x−3)(x²−x−4) ⇒ roots 3, 2, −2." },
+      { q: "Divide (2x⁴−3x³+5x−7) by (x−2) (Remainder Theorem). Remainder?", ans: "f(2)=2·16 − 3·8 + 10 − 7 = 32 − 24 + 3 = 11." },
+      { q: "End behavior of −5x⁵ + 2x³ − 7x.", ans: "Odd degree, neg leading: x→∞ ⇒ f→−∞; x→−∞ ⇒ f→∞." },
+      { q: "If (x−1)² is a factor of x³+bx²+cx+d, condition on b,c,d.", ans: "f(1)=0 and f′(1)=0 ⇒ 1+b+c+d=0 and 3+2b+c=0." },
+      { q: "Find real k so x=−1 is a double root of x³+kx²+3x−4.", ans: "f(−1)=−1+k−3−4=0 ⇒ k=8. Also f′(x)=3x²+2kx+3; f′(−1)=3−2k+3=0 ⇒ 6−2k=0 ⇒ k=3. No k satisfies both ⇒ impossible." }
+    ],
+    "Exponential & Log": [
+      { q: "Solve 3·2^x = 5·3^x.", ans: "2^x / 3^x = 5/3 ⇒ (2/3)^x = 5/3 ⇒ x = log(5/3)/log(2/3) < 0." },
+      { q: "Solve ln(x−1) + ln(x+3) = ln 8.", ans: "(x−1)(x+3)=8 ⇒ x²+2x−3=8 ⇒ x²+2x−11=0 ⇒ x = −1±√12 ⇒ valid: x= −1+2√3 (>1)." },
+      { q: "Solve e^(2x) − 7e^x + 10 = 0.", ans: "Let t=e^x ⇒ t²−7t+10=0 ⇒ t=5 or 2 ⇒ x=ln5 or ln2." },
+      { q: "Simplify log_a(b) · log_b(c) · log_c(a).", ans: "1 (change of base telescopes)." },
+      { q: "Solve 2^(x+1) = 7 − 2^(1−x).", ans: "Let t=2^x>0 ⇒ 2t = 7 − (2/t) ⇒ 2t² − 7t + 2 = 0 ⇒ t = (7 ± √(49 − 16))/4 = (7 ± √33)/4 ⇒ x = log2((7 ± √33)/4)." }
+    ],
+    "Trig Identities": [
+      { q: "Prove: (1 − cos2θ)/(1 + cos2θ) = tan²θ.", ans: "Use cos2θ=1−2sin²θ ⇒ LHS = (2sin²θ)/(2cos²θ) = tan²θ." },
+      { q: "Solve on [0,2π): 2sinx + √3 = 0.", ans: "sin x = −√3/2 ⇒ x = 4π/3, 5π/3." },
+      { q: "Solve: tanx·secx = 2, 0≤x<2π.", ans: "tanx·secx = (sinx/cosx)·(1/cosx) = sinx/cos²x ⇒ numeric solve ⇒ let u=cosx ⇒ sinx=±√(1−u²). Closed form messy; principal solutions near x≈ arcsin(2cos²x). (Use calculator: x≈1.107, 2.034, 4.249, 5.176 rad)" },
+      { q: "Exact value: sin(75°).", ans: "sin(45+30)=sin45cos30+cos45sin30 = (√2/2)(√3/2)+(√2/2)(1/2) = (√6+√2)/4." },
+      { q: "Verify: 1 + tan²x = sec²x.", ans: "Pythagorean identity: sin²+cos²=1 ⇒ divide by cos²." }
+    ]
+  },
+
+  "Precalculus": {
+    "Sequences & Series": [
+      { q: "Sum of first n terms of geometric with a1=6, r=−1/2.", ans: "S_n = 6(1 − (−1/2)^n)/(1 − (−1/2)) = 4(1 − (−1/2)^n)/ (1.5)?? ⇒ Correct: denom = 1+1/2=3/2 ⇒ S_n = 6 · (1 − (−1/2)^n) / (3/2) = 4(1 − (−1/2)^n)." },
+      { q: "Find n so arithmetic a1=5, d=3 has S_n = 406.", ans: "S_n = n/2(2·5 + (n−1)·3) = 406 ⇒  n(10 + 3n − 3) = 812 ⇒ 3n² + 7n − 812 = 0 ⇒ n=  (−7 + √(49 + 9744))/6 = (−7 + √9793)/6 ≈ 17." },
+      { q: "Converges? ∑_{k=1}^∞ 7/(3^k). Value?", ans: "Yes, geometric r=1/3 ⇒ sum = 7·(1/(3−1))? Careful: a1=7/3 ⇒ S= (a1)/(1−r)= (7/3)/(2/3)=7/2." },
+      { q: "nth term of sequence: 2, 5, 10, 17, 26,…", ans: "a_n = n² + 1." },
+      { q: "Telescoping: ∑_{k=1}^n (1/(k(k+1))).", ans: "= 1 − 1/(n+1)." }
+    ],
+    "Complex Numbers": [
+      { q: "Compute (2 − 3i)(4 + i).", ans: "8 + 2i − 12i − 3i² = 11 − 10i." },
+      { q: "Write 1/(3 − 4i) in a + bi.", ans: "(3 + 4i)/25 = 3/25 + (4/25)i." },
+      { q: "cis(θ)·cis(φ) equals?", ans: "cis(θ+φ) (De Moivre)." },
+      { q: "|3 − 4i| and arg(3 − 4i).", ans: "|z|=5; arg ≈ −53.13° (or 306.87°)." },
+      { q: "Solve z² = −16.", ans: "z = ±4i." }
+    ],
+    "Vectors & Parametrics": [
+      { q: "If u=⟨3,−2⟩, v=⟨−1,4⟩, compute 2u − v.", ans: "⟨7, −8⟩." },
+      { q: "Magnitude and direction of w=⟨6,8⟩.", ans: "|w|=10; θ ≈ 53.13°." },
+      { q: "Parametric x=t²−1, y=2t+3. Eliminate t.", ans: "t = (y−3)/2 ⇒ x = ((y−3)/2)² − 1." },
+      { q: "Dot product angle: u·v = |u||v|cosθ for u=⟨1,2⟩, v=⟨−2,1⟩. Find θ.", ans: "u·v= (1)(−2)+(2)(1)=0 ⇒ θ=90°." },
+      { q: "Projection of a=⟨5,1⟩ on b=⟨2,2⟩.", ans: "((a·b)/|b|²) b = ((10+2)/8)⟨2,2⟩ = (12/8)⟨2,2⟩ = ⟨3,3⟩." }
+    ]
+  }
+};
+
+// UI wiring
+(function () {
+  const tabBtn = document.getElementById("tab-enrichment");
+  const panel = document.getElementById("enrichment-panel");
+  const bookSel = document.getElementById("enrich-book");
+  const chapSel = document.getElementById("enrich-chapter");
+  const genBtn  = document.getElementById("enrich-generate");
+  const regBtn  = document.getElementById("enrich-regenerate");
+  const togBtn  = document.getElementById("enrich-toggle-answers");
+  const qList   = document.getElementById("enrich-questions");
+
+  if (!tabBtn || !panel) return;
+
+  // Show panel on click (basic tab behavior — hide others if you have them)
+  tabBtn.addEventListener("click", () => {
+    panel.hidden = false;
+    // Optional: hide other panels in your app here.
+    if (bookSel.options.length === 0) initSelectors();
+  });
+
+  function initSelectors() {
+    // Populate book select
+    const books = Object.keys(ENRICH_BANK);
+    books.forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b; opt.textContent = b;
+      bookSel.appendChild(opt);
+    });
+    // Populate chapter select for first book
+    fillChapters(books[0]);
+
+    bookSel.addEventListener("change", () => fillChapters(bookSel.value));
+    chapSel.addEventListener("change", () => renderFive());
+  }
+
+  function fillChapters(book) {
+    chapSel.innerHTML = "";
+    const chapters = Object.keys(ENRICH_BANK[book]);
+    chapters.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c; opt.textContent = c;
+      chapSel.appendChild(opt);
+    });
+    renderFive();
+  }
+
+  function pickFive(arr) {
+    // Shuffle copy and take first 5
+    const pool = [...arr];
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    return pool.slice(0, 5);
+  }
+
+  function renderFive() {
+    const book = bookSel.value;
+    const chap = chapSel.value;
+    const bank = ENRICH_BANK[book]?.[chap] || [];
+    const five = pickFive(bank);
+    qList.innerHTML = "";
+    five.forEach((item, idx) => {
+      const li = document.createElement("li");
+      const q = document.createElement("div"); q.className = "q"; q.textContent = item.q;
+      const a = document.createElement("div"); a.className = "ans"; a.textContent = "Answer: " + item.ans;
+      li.appendChild(q); li.appendChild(a);
+      qList.appendChild(li);
+    });
+  }
+
+  genBtn?.addEventListener("click", renderFive);
+  regBtn?.addEventListener("click", renderFive);
+  togBtn?.addEventListener("click", () => {
+    const showing = qList.querySelector(".ans")?.style.display === "block";
+    qList.querySelectorAll(".ans").forEach(el => el.style.display = showing ? "none" : "block");
+    togBtn.textContent = showing ? "Show Answers" : "Hide Answers";
+  });
+})();
