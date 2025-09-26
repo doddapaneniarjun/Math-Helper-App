@@ -1,54 +1,62 @@
 /* Math Surfer styles */
-.math-surfer {
+/* Keep surfer on top and clickable */
+.math-surfer-link {
   position: fixed;
   top: 12px;
   left: 12px;
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #39c2ff;                 /* wave + board color (nice on dark or light) */
+  z-index: 100000;          /* higher than app headers */
+  text-decoration: none;
+  color: inherit;
+  pointer-events: auto;     /* ensure clicks pass */
+}
+.math-surfer-link * { pointer-events: auto; }
+
+.math-surfer {
+  display: inline-block;
+  color: #39c2ff;
   filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
   user-select: none;
 }
-
 .math-surfer-svg {
   background: radial-gradient(100% 100% at 50% 0%, rgba(57,194,255,0.12), rgba(0,0,0,0) 60%);
   border-radius: 12px;
 }
-
-/* Bobbing animation for surfer */
-.surfer {
-  animation: surf-bob 2.2s ease-in-out infinite;
-  transform-origin: center;
+.math-surfer-link:hover .math-surfer {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
+/* Animation */
+.surfer { animation: surf-bob 2.2s ease-in-out infinite; transform-origin: center; }
 @keyframes surf-bob {
   0%   { transform: translate(40px,72px) translateY(0); }
   50%  { transform: translate(40px,72px) translateY(-4px); }
   100% { transform: translate(40px,72px) translateY(0); }
 }
 
-/* fact pill */
+/* Fact pill (moved a bit so it doesn't cover the link) */
 .math-surfer-fact {
-  background: rgba(0,0,0,0.65);
+  position: fixed;
+  top: 16px;
+  left: 152px;              /* keeps clear of the link hitbox */
+  background: rgba(0,0,0,0.68);
   color: #e8f7ff;
   border: 1px solid rgba(57,194,255,0.35);
   padding: 6px 10px;
   border-radius: 10px;
   font-size: 12px;
   line-height: 1.2;
-  max-width: 200px;
+  max-width: 220px;
   cursor: pointer;
   backdrop-filter: blur(4px);
+  z-index: 100001;          /* above surfer */
+  pointer-events: auto;
 }
-
-.math-surfer-fact:hover {
-  background: rgba(0,0,0,0.78);
-}
+.math-surfer-fact:hover { background: rgba(0,0,0,0.8); }
 
 @media (max-width: 480px) {
-  .math-surfer { transform: scale(0.85); transform-origin: top left; }
+  .math-surfer-link { transform: scale(0.85); transform-origin: top left; }
+  .math-surfer-fact { left: 126px; }
 }
 
 
