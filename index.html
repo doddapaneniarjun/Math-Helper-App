@@ -20,41 +20,6 @@
   </style>
 </head>
 <body><!-- Math Surfer Badge (Home link) -->
-  <!-- Enrichment Tab Button -->
-<button id="tab-enrichment" class="tab-btn">Enrichment</button>
-
-<!-- Enrichment Panel -->
-<section id="enrichment-panel" hidden>
-  <div class="enrichment-controls">
-    <label>
-      Book:
-      <select id="enrich-book"></select>
-    </label>
-    <label>
-      Chapter:
-      <select id="enrich-chapter"></select>
-    </label>
-    <button id="enrich-generate" class="primary">Generate 5 Hard Qs</button>
-    <button id="enrich-toggle-answers">Show Answers</button>
-  </div>
-
-  <ol id="enrich-questions" class="q-list"></ol>
-
-  <div class="enrichment-actions">
-    <button id="enrich-regenerate">Regenerate</button>
-    <span class="hint">Tip: click “Show Answers,” then “Regenerate” to get fresh sets.</span>
-  </div>
-</section>
-
-<a href="./index.html" class="math-surfer-link" id="math-surfer-home" aria-label="Go Home">
-  <div class="math-surfer" role="img">
-    <svg class="math-surfer-svg" viewBox="0 0 120 120" width="120" height="120">
-      <!-- Sine wave path -->
-      <path id="wave-path" d="M 0 80 
-        C 15 60, 30 60, 45 80
-        S 75 100, 90 80
-        S 120 60, 135 80" 
-        fill="none" stroke="currentColor" stroke-width="2" opacity="0.5" />
 
       <!-- Text along wave -->
       <text class="wave-text" font-size="8" fill="currentColor">
@@ -105,19 +70,6 @@
   </div>
 </a>
 
-<!-- Fact pill -->
-<div class="math-surfer-fact" title="Click to change fact">
-  <span class="math-fact"></span>
-</div>
-
-   <!-- Math Surfer Badge -->
- <div class="math-surfer" aria-label="Math Surfer badge" role="img">
-   <svg class="math-surfer-svg" viewBox="0 0 120 120" width="120" height="120">
-    <!-- Sine wave (static path) -->
-     <path id="wave-path" d="M 0 80 
-       C 15 60, 30 60, 45 80
-       S 75 100, 90 80
-       S 120 60, 135 80" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5" />
 
     <!-- Text along the wave: y = sin(x) -->
      <text class="wave-text" font-size="8" fill="currentColor">
