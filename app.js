@@ -642,3 +642,38 @@ updateProgressUI();
     }, 60);
   }
 })();
+// ---- Math Surfer Badge Logic ----
+(function () {
+  const facts = [
+    "sin²x + cos²x = 1",
+    "e^{iπ} + 1 = 0",
+    "Area of circle = πr²",
+    "Derivative of sin x = cos x",
+    "∑_{k=1}^{n} k = n(n+1)/2",
+    "Golden ratio φ ≈ 1.618",
+    "Pythagoras: a² + b² = c²",
+    "ln(e) = 1",
+    "d/dx (x^n) = n·x^{n-1}"
+  ];
+
+  const factEl = document.querySelector(".math-fact");
+  if (!factEl) return;
+
+  let idx = Math.floor(Math.random() * facts.length);
+  factEl.textContent = facts[idx];
+
+  document.querySelector(".math-surfer-fact").addEventListener("click", () => {
+    idx = (idx + 1) % facts.length;
+    factEl.textContent = facts[idx];
+  });
+
+  const waveText = document.querySelector(".wave-text textPath");
+  if (waveText) {
+    let offset = 10;
+    setInterval(() => {
+      offset += 0.3;
+      if (offset > 40) offset = 10;
+      waveText.setAttribute("startOffset", offset + "%");
+    }, 60);
+  }
+})();
