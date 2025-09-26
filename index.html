@@ -20,6 +20,43 @@
   </style>
 </head>
 <body>
+   <!-- Math Surfer Badge -->
+ <div class="math-surfer" aria-label="Math Surfer badge" role="img">
+   <svg class="math-surfer-svg" viewBox="0 0 120 120" width="120" height="120">
+    <!-- Sine wave (static path) -->
+     <path id="wave-path" d="M 0 80 
+       C 15 60, 30 60, 45 80
+       S 75 100, 90 80
+       S 120 60, 135 80" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5" />
+
+    <!-- Text along the wave: y = sin(x) -->
+     <text class="wave-text" font-size="8" fill="currentColor">
+       <textPath href="#wave-path" startOffset="10%">y = sin(x)</textPath>
+     </text>
+
+    <!-- Surfer (stick figure + board) -->
+     <g class="surfer" transform="translate(40,72)">
+      <!-- board -->
+       <ellipse cx="0" cy="8" rx="14" ry="4" fill="currentColor" opacity="0.85"></ellipse>
+      <!-- body -->
+       <line x1="0" y1="-10" x2="0" y2="5" stroke="white" stroke-width="2"/>
+      <!-- arms -->
+       <line x1="-8" y1="-4" x2="8" y2="-4" stroke="white" stroke-width="2"/>
+      <!-- legs -->
+       <line x1="0" y1="5" x2="-8" y2="12" stroke="white" stroke-width="2"/>
+       <line x1="0" y1="5" x2="8" y2="12" stroke="white" stroke-width="2"/>
+      <!-- head -->
+       <circle cx="0" cy="-16" r="4" fill="white"/>
+      <!-- tiny math on the board -->
+       <text x="-11" y="11" font-size="5" fill="black">π</text>
+     </g>
+   </svg>
+
+   <div class="math-surfer-fact" title="Tap to change fact">
+     <span class="math-fact"></span>
+   </div>
+ </div>
+
   <div class="container">
     <h1>📘 Math Helper</h1>
 
